@@ -36,6 +36,8 @@ const RouteForm = () => {
     graph.mergeEdge(2, 0);
     graph.mergeEdge(2, 1);
     graph.mergeEdge(1, 3);
+    graph.mergeEdge(2, 4);
+    graph.mergeEdge(3, 4);
   }, [])
 
   useEffect(() => {
