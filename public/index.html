@@ -27,7 +27,7 @@
     <title>React App</title>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <!-- <noscript>You need to enable JavaScript to run this app.</noscript> -->
     <div id="root"></div>
     <!--
       This HTML file is a template.
@@ -39,5 +39,183 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+
+// JavaScript program to print all
+// paths from a source to
+// destination.
+
+let v;
+
+let adjList;
+
+// 1040 	17.44746 	78.49645 	JBS 	1000
+// 2105 	17.44311 	78.49896 	YMca 	1000
+// 813 	17.44116 	78.50558 	sangeeth 	1000
+// 1574 	17.43695 	78.50511 	secunderabaD 	1000
+// 1398 	17.43478 	78.50508 	rethifile busstation 	1000
+// 1399 	17.43183 	78.50565 	chilkalguda
+
+let stops = [
+  {
+    id: 1040,
+    lat: 17.44746,
+    lng: 78.49645,
+    name: 'JBS'
+  },
+  {
+    id: 2105,
+    lat: 17.44311,
+    lng: 78.49896,
+    name: 'YMca'
+  },
+  {
+    id: 813,
+    lat: 17.44116,
+    lng: 78.50558,
+    name: 'sangeeth'
+  },
+  {
+    id: 1574,
+    lat: 17.43695,
+    lng: 78.50511,
+    name: 'secunderabaD'
+  },
+  {
+    id: 1398,
+    lat: 17.43478,
+    lng: 78.50508,
+    name: 'rethifile busstation'
+  }
+]
+
+let routes = []
+
+// A directed graph using
+// adjacency list representation
+function Graph(vertices)
+{
+	// initialise vertex count
+		v = vertices;
+
+		// initialise adjacency list
+		initAdjList();
+}
+
+// utility method to initialise
+	// adjacency list
+function initAdjList()
+{
+	adjList = new Array(v);
+
+		for (let i = 0; i < v; i++) {
+			adjList[i] = [];
+		}
+}
+
+// add edge from u to v
+function addEdge(u,v)
+{
+	// Add v to u's list.
+		adjList[u].push(v);
+}
+
+// Prints all paths from
+	// 's' to 'd'
+function printAllPaths(s,d)
+{
+	let isVisited = new Array(v);
+	for(let i=0;i<v;i++)
+		isVisited[i]=false;
+		let pathList = [];
+
+		// add source to path[]
+		pathList.push(s);
+
+		// Call recursive utility
+		printAllPathsUtil(s, d, isVisited, pathList);
+}
+
+// A recursive function to print
+	// all paths from 'u' to 'd'.
+	// isVisited[] keeps track of
+	// vertices in current path.
+	// localPathList<> stores actual
+	// vertices in the current path
+function printAllPathsUtil(u,d,isVisited,localPathList)
+{
+  
+	if (u == (d)) {
+			document.write(localPathList+"<br>");
+			// if match found then no need to
+			// traverse more till depth
+      routes.push([...localPathList])
+			return;
+	}
+
+		// Mark the current node
+		isVisited[u] = true;
+
+		// Recur for all the vertices
+		// adjacent to current vertex
+		for (let i=0;i< adjList[u].length;i++) {
+			if (!isVisited[adjList[u][i]]) {
+				// store current node
+				// in path[]
+				localPathList.push(adjList[u][i]);
+				printAllPathsUtil(adjList[u][i], d,
+				isVisited, localPathList);
+
+				// remove current node
+				// in path[]
+				localPathList.splice(localPathList.indexOf
+				(adjList[u][i]),1);
+			}
+		}
+
+		// Mark the current node
+		isVisited[u] = false;
+}
+
+// Driver program
+// Create a sample graph
+Graph(stops.length);
+addEdge(0, 1);
+addEdge(0, 2);
+addEdge(0, 3);
+addEdge(2, 0);
+addEdge(2, 1);
+addEdge(1, 3);
+addEdge(3,4);
+addEdge(1,4);
+// addEdge(4,5);
+
+// arbitrary source
+let s = 0;
+
+// arbitrary destination
+let d = 4;
+
+
+// document.write(
+// "Following are all different paths from "
+// + s + " to " + d+"<Br>");
+// printAllPaths(s, d);
+
+// routes.forEach(route => {
+//   let stopsRoute = ''
+//   route.forEach(stop => {
+//     console.log(stop)
+//     stopsRoute += stops[stop].name + '->'
+//   })
+//   document.write(stopsRoute + "<Br>")
+// })
+	
+
+
+// This code is contributed by avanitrachhadiya2155
+
+
+    </script>
   </body>
 </html>

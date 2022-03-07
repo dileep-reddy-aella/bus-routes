@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react'
+import RouteForm from "./components/RouteForm";
+import 'antd/dist/antd.css'
+import Example from "./Example";
+import RouteView from "./components/RouteView";
 
 function App() {
+  const [currentRoute, setCurrentRoute] = useState([])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='h-screen w-screen flex bg-slate-500'>
+      {/* <div className='flex flex-row h-full w-3/6 bg-slate-500'> */}
+
+        <RouteForm />
+        
+      {/* <Example /> */}
     </div>
   );
 }
