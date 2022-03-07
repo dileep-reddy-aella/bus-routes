@@ -44,7 +44,7 @@ const RouteView = ({currentRoute, polys, center = {lat: 17.3850, lng: 78.4867}, 
             <div style={{width: '600px', height: '500px', margin: 'auto'}}>
               <GoogleMapReact
                 ref={mapRef}
-                bootstrapURLKeys={{ key: 'AIzaSyCmwql6jVIv2yGfiOHYsgKEX-KgUk7mgPs'}}
+                bootstrapURLKeys={{ key: process.env.REACT_APP_API_KEY}}
                 defaultCenter={polys[0]}
                 defaultZoom={zoom}
                 layerTypes={['TransitLayer']}
